@@ -1,0 +1,93 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3962700, 2020-10-20T11:14:16-0400
+ *
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are
+ * explicitly restricted from using the Licensed Webfonts(s).
+ *
+ * Webfonts copyright: Copyright &amp;#x00A9; 2019 Monotype Imaging Inc. All rights reserved.
+ *
+ * © 2020 MyFonts Inc
+*/
+@import url("//hello.myfonts.net/count/3c774c");
+
+@font-face {
+  font-family: 'HelveticaNowText';
+  src: url('webFonts/HelveticaNowText-Thin/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-Thin/font.woff') format('woff');
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'HelveticaNowText';
+  src: url('webFonts/HelveticaNowText-ExtraLight/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-ExtraLight/font.woff') format('woff');
+  font-weight: 200;
+}
+@font-face {
+  font-family: 'HelveticaNowText';
+  src: url('webFonts/HelveticaNowText-Light/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-Light/font.woff') format('woff');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'HelveticaNowText';
+  src: url('webFonts/HelveticaNowText-Regular/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-Regular/font.woff') format('woff');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'HelveticaNowText';
+  src: url('webFonts/HelveticaNowText-Medium/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-Medium/font.woff') format('woff');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'HelveticaNowText';
+  src: url('webFonts/HelveticaNowText-Bold/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-Bold/font.woff') format('woff');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'HelveticaNowText';
+  src: url('webFonts/HelveticaNowText-ExtraBold/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-ExtraBold/font.woff') format('woff');
+  font-weight: 800;
+}
+@font-face {
+  font-family: 'HelveticaNowText';
+  src: url('webFonts/HelveticaNowText-Black/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-Black/font.woff') format('woff');
+  font-weight: 900;
+}
+
+
+
+
+
+/*@font-face {
+  font-family: 'HelveticaNowText-XBdIt';
+  src: url('webFonts/HelveticaNowText-XBdIt/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-XBdIt/font.woff') format('woff');
+}
+@font-face {
+  font-family: 'HelveticaNowText-XLtIt';
+  src: url('webFonts/HelveticaNowText-XLtIt/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-XLtIt/font.woff') format('woff');
+}
+@font-face {
+  font-family: 'HelveticaNowText-ThIt';
+  src: url('webFonts/HelveticaNowText-ThIt/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-ThIt/font.woff') format('woff');
+}
+@font-face {
+  font-family: 'HelveticaNowText-It';
+  src: url('webFonts/HelveticaNowText-It/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-It/font.woff') format('woff');
+}
+@font-face {
+  font-family: 'HelveticaNowText-MdIt';
+  src: url('webFonts/HelveticaNowText-MdIt/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-MdIt/font.woff') format('woff');
+}
+@font-face {
+  font-family: 'HelveticaNowText-LtIt';
+  src: url('webFonts/HelveticaNowText-LtIt/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-LtIt/font.woff') format('woff');
+}
+@font-face {
+  font-family: 'HelveticaNowText-BdIt';
+  src: url('webFonts/HelveticaNowText-BdIt/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-BdIt/font.woff') format('woff');
+}
+@font-face {
+  font-family: 'HelveticaNowText-BlkIt';
+  src: url('webFonts/HelveticaNowText-BlkIt/font.woff2') format('woff2'), url('webFonts/HelveticaNowText-BlkIt/font.woff') format('woff');
+}*/
+
+
