@@ -1,0 +1,51 @@
+{
+    "parser": "babel-eslint",
+    "extends": [
+        "react-app"
+    ],
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "settings": {
+        "react": {
+            "version": "16.8.2"
+        }
+    },
+    "plugins": [
+        "react",
+        "react-hooks"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "experimentalDecorators": true
+        }
+    },
+    "rules": {
+        "no-unused-vars": "warn",
+        "indent": ["warn", 2, {"SwitchCase": 1}],
+        "semi": ["warn", "always"],
+        "object-curly-spacing": ["warn", "never"],
+        "space-before-function-paren": 0,
+        "react/prop-types": 0,
+        "react/jsx-boolean-value": 0,
+        "react/jsx-uses-vars": "warn",
+        "react/no-did-update-set-state": 0,
+        "array-callback-return": 0,
+        "radix": 0,
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "no-restricted-imports": [
+            "error",
+            {
+                "patterns": [
+                    "@material-ui/*/*/*",
+                    "!@material-ui/core/test-utils/*"
+                ]
+            }
+        ]
+    }
+}
