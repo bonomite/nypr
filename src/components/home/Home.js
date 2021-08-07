@@ -52,9 +52,6 @@ const Home = ({
         title="Popular Movies"
         backdropPath={ headBackdropPath }
       />
-
-
-
       <Grid container
         direction="row"
         justifyContent="center"
@@ -62,13 +59,11 @@ const Home = ({
         className={ 'container-fluid' }
         spacing={3}
       >
-
         {
           error
             ?
             <Typography>An error has occurred: { error.message }</Typography>
             :
-
             isLoading
               ?
               <Grid item>
@@ -109,8 +104,6 @@ const Home = ({
                 </Grid>
               </>
         }
-
-
       </Grid>
       <ReactQueryDevtools />
     </>

@@ -1,8 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import {Tween} from 'react-gsap';
 import {
   withStyles,
 } from '@material-ui/core';

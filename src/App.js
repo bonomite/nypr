@@ -13,7 +13,6 @@ import MovieComponent from './components/movie/Movie';
 
 const queryClient = new QueryClient();
 
-
 function App() {
   return (
     <BrowserRouter>

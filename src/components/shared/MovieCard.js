@@ -1,4 +1,5 @@
 import React, {Suspense, useRef, useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {useImage} from 'react-image';
 import {
@@ -34,6 +35,7 @@ const styles = theme => ({
     '& .img':{
       transition: 'all 0.25s',
       '& img':{
+        transition: 'all 0.25s',
         borderRadius: theme.shape.borderRadius,
         width: '100%',
         boxShadow: theme.shadows[2],
@@ -73,6 +75,8 @@ const MovieCard = ({
 }) => {
 
   const card = useRef();
+  const history = useHistory();
+
 
   useEffect(() => {
     gsap.from(card.current,{duration:1, scale:0.85, opacity:0, ease: 'back.out'});
@@ -81,6 +85,7 @@ const MovieCard = ({
 
   const handleClick = (e) => {
     console.log('card clicked');
+    history.push(`/movie?id=${data.id}`);
   };
 
   const PosterImageSkeleton = () => (
@@ -115,7 +120,7 @@ const MovieCard = ({
     <ButtonBase
       className={classes.movieCard}
       onClick={ handleClick }
-      title={data.title}
+      title={`${data.title} - ${Math.round(data.vote_average / 2)} Stars`}
       ref={card}
     >
 
