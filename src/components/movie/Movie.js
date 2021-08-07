@@ -1,4 +1,4 @@
-import React, {Fragment, useState/* , useEffect */} from 'react';
+import React, {useState/* , useEffect */} from 'react';
 import PropTypes from 'prop-types';
 import HeadSection from '../shared/HeadSection';
 import {useQuery} from 'react-query';
@@ -28,7 +28,7 @@ const Movie = ({
   console.log('data = ',data);
 
   return (
-    <Fragment>
+    <>
       <HeadSection title="Movie Title Here"/>
 
       <Grid container
@@ -43,7 +43,7 @@ const Movie = ({
 
       </Grid>
       <ReactQueryDevtools />
-    </Fragment>
+    </>
   );
 };
 

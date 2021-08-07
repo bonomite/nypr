@@ -11,7 +11,7 @@ const styles = theme => ({
     '.the-header':{
       position: 'fixed',
       backgroundColor: theme.palette.common.darkBlack,
-      zIndex:1,
+      zIndex:100,
       top: 0,
       width: '100%',
       boxShadow: theme.shadows[6],

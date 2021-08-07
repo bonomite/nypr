@@ -1,6 +1,5 @@
-import React, {Fragment, Suspense, useRef} from 'react';
+import React, {Suspense, useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {useTheme} from '@material-ui/core/styles';
 import {useImage} from 'react-image';
 import {
   Grid,
@@ -9,22 +8,22 @@ import {
   withStyles,
   ButtonBase,
 } from '@material-ui/core';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Skeleton from '@material-ui/lab/Skeleton';
-import {Tween} from 'react-gsap';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import gsap from 'gsap';
+import FavoriteHeart from './FavoriteHeart';
+import StarRating from './StarRating';
 
 const styles = theme => ({
   movieCard: {
+    perspective: 550,
     display: 'flex',
     width: 150,
     marginBottom: 48,
     '&:hover':{
       '& .img':{
+        transformStyle: 'preserve-3d',
+        transform: 'rotateY(-10deg) rotateX(-10deg) rotateZ(2deg)',
         '& img':{
-          transformStyle: 'preserve-3d',
-          transform: 'rotateY(-10deg) rotateX(-10deg) rotateZ(2deg)',
           boxShadow: theme.shadows[6],
         },
       },
@@ -33,12 +32,11 @@ const styles = theme => ({
       },
     },
     '& .img':{
-      perspective: 550,
+      transition: 'all 0.25s',
       '& img':{
-        boxShadow: theme.shadows[2],
-        transition: 'all 0.25s',
         borderRadius: theme.shape.borderRadius,
         width: '100%',
+        boxShadow: theme.shadows[2],
       },
     },
     '& .content':{
@@ -53,7 +51,7 @@ const styles = theme => ({
       position: 'absolute',
       top: 10,
       right: 10,
-      zIndex: 2,
+      zIndex: 1,
       opacity: 0.6,
       color: theme.palette.common.white,
       cursor: 'pointer',
@@ -61,7 +59,7 @@ const styles = theme => ({
       filter: 'drop-shadow( 2px 2px 2px rgba(0, 0, 0, 0.4))',
       transition: 'all 0.25s',
       '&:hover':{
-        opacity:1,
+        opacity:'1 !important',
       },
     }
   },
@@ -70,26 +68,19 @@ const styles = theme => ({
 
 const MovieCard = ({
   classes,
-  data
+  data,
+  localStorageArr,
 }) => {
 
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const card = useRef();
 
-  const heart = useRef();
-
+  useEffect(() => {
+    gsap.from(card.current,{duration:1, scale:0.85, opacity:0, ease: 'back.out'});
+  }, []);
 
 
   const handleClick = (e) => {
     console.log('card clicked');
-    // animate heart
-
-  };
-
-  const handleFavorite = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('heart clicked');
   };
 
   const PosterImageSkeleton = () => (
@@ -107,21 +98,15 @@ const MovieCard = ({
       srcList: `https://www.themoviedb.org/t/p/w220_and_h330_face${data.poster_path}`,
     });
     return (
-      <Tween
-        from={{opacity: '0', scale:0.85}}
-        duration={1}
-        ease="back.out"
-      >
-        <Grid container>
-
-          <Grid item className="img">
-            <img src={src} alt={`Poster for ${data.title}`}/>
-          </Grid>
-          <Grid item className="content">
-            <Typography>{data.title}</Typography>
-          </Grid>
+      <Grid container>
+        <Grid item className="img">
+          <img src={src} alt={`Poster for ${data.title}`}/>
+          <StarRating score={data.vote_average}></StarRating>
         </Grid>
-      </Tween>
+        <Grid item className="content">
+          <Typography >{data.title}</Typography>
+        </Grid>
+      </Grid>
     );
   };
 
@@ -131,13 +116,16 @@ const MovieCard = ({
       className={classes.movieCard}
       onClick={ handleClick }
       title={data.title}
+      ref={card}
     >
+
       <Suspense fallback={ <PosterImageSkeleton/> }>
-        <FavoriteBorderIcon
-          ref={heart}
-          onClick={ handleFavorite }
-          className="favorite"
+
+        <FavoriteHeart
+          data={data}
+          localStorageArr={localStorageArr}
         />
+
         <PosterImage/>
       </Suspense>
     </ButtonBase>
@@ -149,6 +137,7 @@ MovieCard.propTypes = {
   classes: PropTypes.object,
   title: PropTypes.string,
   backdropPath: PropTypes.string,
+  localStorageArr: PropTypes.array,
 };
 
 export default (withStyles(styles, {withTheme: true})(MovieCard));

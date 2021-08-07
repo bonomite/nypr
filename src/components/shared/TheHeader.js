@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Grid,
@@ -17,7 +17,7 @@ const TheHeader = ({
 
 }) => {
   return (
-    <Fragment>
+    <>
       <div className={ `the-header ${ classes.wrapper }` }>
         <div className={ 'container-fluid' }>
           <Grid
@@ -38,7 +38,7 @@ const TheHeader = ({
           </Grid>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 

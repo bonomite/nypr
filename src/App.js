@@ -1,4 +1,4 @@
-import React, {Fragment, Suspense, lazy} from 'react';
+import React from 'react';
 import {MuiThemeProvider, CssBaseline} from '@material-ui/core';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import theme from './theme';
@@ -8,8 +8,9 @@ import {
   QueryClientProvider,
 } from 'react-query';
 
-const HomeComponent = lazy(() => import('./components/home/Home'));
-const MovieComponent = lazy(() => import('./components/movie/Movie'));
+import HomeComponent from './components/home/Home';
+import MovieComponent from './components/movie/Movie';
+
 const queryClient = new QueryClient();
 
 
@@ -20,16 +21,16 @@ function App() {
         <CssBaseline />
         <GlobalStyles />
         <QueryClientProvider client={queryClient}>
-          <Suspense fallback={ <Fragment /> }>
-            <Switch>
-              <Route path="/movie">
-                <MovieComponent />
-              </Route>
-              <Route >
-                <HomeComponent />
-              </Route>
-            </Switch>
-          </Suspense>
+
+          <Switch>
+            <Route path="/movie">
+              <MovieComponent />
+            </Route>
+            <Route >
+              <HomeComponent />
+            </Route>
+          </Switch>
+
         </QueryClientProvider>
       </MuiThemeProvider>
     </BrowserRouter>

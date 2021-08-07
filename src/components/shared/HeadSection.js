@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {useTheme} from '@material-ui/core/styles';
 import {
@@ -43,7 +43,7 @@ const HeadSection = ({
   matches ? imageWidth='1280' : imageWidth='500';
 
   return (
-    <Fragment>
+    <>
       <div className={ `head-section top-wrapper-pt ${ classes.wrapper }`} >
 
         {
@@ -70,7 +70,7 @@ const HeadSection = ({
           </Grid>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 
