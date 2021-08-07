@@ -2,10 +2,12 @@ import React, {Fragment, useState, useCallback, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import HeadSection from '../shared/HeadSection';
 import TheHeader from '../shared/TheHeader';
+import MovieCard from '../shared/MovieCard';
 import {useQuery} from 'react-query';
 import {ReactQueryDevtools} from 'react-query/devtools';
 import {
   Grid,
+  Typography,
 } from '@material-ui/core';
 import SVG from 'react-inlinesvg';
 
@@ -25,7 +27,7 @@ const Home = ({
 
   //if (isLoading) return 'Loading...';
 
-  //if (error) return `An error has occurred: ${ error.message }`;
+  if (error) return `An error has occurred: ${ error.message }`;
 
   const getRandomBackdropPath = (results) => {
     const RandomMovie = results[Math.floor(Math.random()*results.length)];
@@ -45,14 +47,45 @@ const Home = ({
       />
 
       <Grid container
-        direction="column"
+        direction="row"
         justifyContent="center"
-        alignItems="center"
+        alignItems="flex-start"
         className={ 'container-fluid' }
+        spacing={3}
       >
-        <Grid item>
 
-        </Grid>
+        {
+          error
+            ?
+            <Typography>An error has occurred: { error.message }</Typography>
+            :
+
+            isLoading
+              ?
+              <Grid
+                item
+              >
+              ...loading
+              </Grid>
+              :
+
+              data.results.map((movie) => (
+
+                <Grid
+                  item
+                  key={ movie.id }
+                  xs='auto'
+                >
+                  <MovieCard
+                    data={movie}
+                  />
+                </Grid>
+              ))
+
+
+        }
+
+
       </Grid>
       <ReactQueryDevtools />
     </Fragment>

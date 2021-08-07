@@ -21,6 +21,7 @@ const styles = theme => ({
     },
 
     '.head-section':{
+      marginBottom: 24,
       overflow: 'hidden',
       marginTop:headerHeight,
       position: 'relative',

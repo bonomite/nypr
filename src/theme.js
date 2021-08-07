@@ -78,6 +78,9 @@ const theme = createTheme({
     borderColor: borderColor,
     borderWidth: borderWidth,
   },
+  shape: {
+    borderRadius: 4,
+  },
   overrides: {
     MuiExpansionPanel: {
       root: {
