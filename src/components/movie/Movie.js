@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import HeadSectionMovie from '../shared/HeadSectionMovie';
 import {useQuery} from 'react-query';
 import TheHeader from '../shared/TheHeader';
-import {ReactQueryDevtools} from 'react-query/devtools';
 import {
   Grid,
   LinearProgress
@@ -54,7 +53,6 @@ const Movie = ({
         </Grid>
 
       </Grid>
-      <ReactQueryDevtools />
     </>
   );
 };
