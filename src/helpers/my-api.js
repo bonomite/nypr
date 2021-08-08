@@ -36,4 +36,11 @@ const getSimilarMovies = (page,id) => {
 
 };
 
-export {getPopularMovies, getMovie, getVideos, getSimilarMovies};
+const getSearch = (query) => {
+  return fetch(
+    `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${query}`,
+  ).then(res => res.json());
+
+};
+
+export {getPopularMovies, getMovie, getVideos, getSimilarMovies, getSearch};

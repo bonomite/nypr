@@ -15,8 +15,8 @@ const styles = theme => ({
       top: 0,
       width: '100%',
       boxShadow: theme.shadows[6],
+      height: headerHeight,
       '& .MuiGrid-root':{
-        height: headerHeight,
       }
     },
 
