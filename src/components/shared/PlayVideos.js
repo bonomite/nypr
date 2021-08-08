@@ -115,7 +115,6 @@ const PlayVideos = ({
               width='100%'
               height='100%'
               controls
-              autoplay
               url={`https://www.youtube.com/watch?v=${data.results[selectedVideoIndex].key}`}
             />
           </Dialog>

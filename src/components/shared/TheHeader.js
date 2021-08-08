@@ -5,7 +5,6 @@ import {
   withStyles,
   withWidth,
   CircularProgress,
-  LinearProgress,
   TextField,
   Typography,
 } from '@material-ui/core';
@@ -43,11 +42,7 @@ const TheHeader = ({
 
   const [ searchValue , setSearchValue ] = useState('');
 
-  const {isLoading, error, data} = useQuery( ['movieData', searchValue], () => getSearch(searchValue), {refetchOnWindowFocus: false} );
-
-  console.log('data = ', data);
-  console.log('data results = ', data?.results);
-  console.log('searchValue = ', searchValue);
+  const {/* isLoading, */ error, data} = useQuery( ['movieData', searchValue], () => getSearch(searchValue), {refetchOnWindowFocus: false} );
 
   //   if (isLoading) return <LinearProgress style={{width: '100%'}} />;
   //
@@ -88,13 +83,10 @@ const TheHeader = ({
             <Grid item xs={6} sm={4}>
               <Autocomplete
                 className={classes.searchField}
-                //>value={searchValue}
                 autoHighlight
-                /* options={(data && data?.results?.length) ? data?.results?.map((option) => option.title) : []} */
                 options={(data && data?.results?.length) ? data?.results : []}
                 getOptionLabel={(option) => option.title}
                 renderOption={(option) => {
-                  console.log('option = ', option);
                   const date = option.release_date;
                   const year = date ? date.substring(0,4) : '';
                   return (
@@ -128,7 +120,7 @@ const TheHeader = ({
                     fullWidth
                     inputProps={{
                       ...params.inputProps,
-                      autoComplete: 'new-password', // disable autocomplete and autofill
+                      autoComplete: 'new-password',
                     }}
                   />
                 )}
