@@ -4,10 +4,13 @@ import {useQuery} from 'react-query';
 import TheHeader from '../shared/TheHeader';
 import {
   Grid,
-  LinearProgress
+  LinearProgress,
+  Box,
 } from '@material-ui/core';
 import initLocalStorage from '../shared/initLocalStorage';
 import {getMovie} from '../../helpers/my-api';
+import PlayVideos from '../shared/PlayVideos';
+import SimilarMovies from '../shared/SimilarMovies';
 
 let id = '';
 
@@ -23,12 +26,9 @@ const Movie = ({
     var url_string = window.location.href;
     var url = new URL(url_string);
     id = url.searchParams.get("id");
-    window.onbeforeunload = function () {
-      window.scrollTo(0, 0);
-    };
   }, []);
 
-  const {isLoading, error, data} = useQuery( ['popularMovieData', id], () => getMovie(id), {keepPreviousData : true, refetchOnWindowFocus: false} );
+  const {isLoading, error, data} = useQuery( ['movieData', id], () => getMovie(id), {keepPreviousData : true, refetchOnWindowFocus: false} );
 
   if (isLoading) return <LinearProgress style={{width: '100%'}} />;
 
@@ -42,17 +42,21 @@ const Movie = ({
         localStorageArr={localStorageArr}
       />
 
-      <Grid container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        className={ 'container-fluid' }
-      >
-        <Grid item>
-
+      <div className={`container-fluid`}>
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <PlayVideos id={data.id}/>
+          </Grid>
         </Grid>
-
-      </Grid>
+      </div>
+      <Box mt={5}></Box>
+      <div className={`container-fluid`}>
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <SimilarMovies id={ data.id }/>
+          </Grid>
+        </Grid>
+      </div>
     </>
   );
 };

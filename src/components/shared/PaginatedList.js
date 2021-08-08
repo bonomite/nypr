@@ -20,9 +20,8 @@ const PaginatedList = ({
 
   return (
     <>
-      <Grid container justifyContent="center" style={{marginBottom: 24}}>
+      <Grid container justifyContent="center" style={{margin: '24px 0'}}>
         <Pagination
-          className="pagination"
           count={data?.total_pages}
           page={queryPage}
           onChange={handlePageChange}
@@ -43,7 +42,6 @@ const PaginatedList = ({
       }
       <Grid container justifyContent="center" style={{marginBottom: 24}}>
         <Pagination
-          className="pagination"
           count={data?.total_pages}
           page={queryPage}
           onChange={handlePageChange}

@@ -9,6 +9,7 @@ import {
   AppBar,
   Dialog,
   Slide,
+  Box,
 } from '@material-ui/core';
 import {getVideos} from '../../helpers/my-api';
 import {useQuery} from 'react-query';
@@ -68,10 +69,11 @@ const PlayVideos = ({
   return (
     <>
       <Typography variant="h5">Videos:</Typography>
+      <Box mt={3}></Box>
       {
         data &&
         <>
-          <Grid container spacing={2}>
+          <Grid container spacing={3}>
             {
               data.results.map((val,index) => (
 

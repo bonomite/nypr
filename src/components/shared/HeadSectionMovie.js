@@ -13,8 +13,6 @@ import StarRating from './StarRating';
 import {usePalette} from 'color-thief-react';
 import timeConvert from '../../helpers/timeConvert';
 import FavoriteHeart from './FavoriteHeart';
-import PlayVideos from './PlayVideos';
-import SimilarMovies from './SimilarMovies';
 
 const styles = theme => ({
   wrapper: {
@@ -46,9 +44,6 @@ const styles = theme => ({
       right: 30,
     },
   },
-  videos:{
-
-  },
 });
 
 let imageWidth = null;
@@ -67,7 +62,7 @@ const HeadSectionMovie = ({
   const imgPosterPath = `https://image.tmdb.org/t/p/w${imageWidth}${movieData?.poster_path}`;
 
   // gets 3 colors from the image
-  let {data} = usePalette(imgPosterPath, 5, 'hex', {crossOrigin:true, quality:200});
+  let {data, loading} = usePalette(imgPosterPath, 5, 'hex', {crossOrigin:true, quality:200});
   if(!data){
     data = ["#90cea1", "", "#3cbec9", "", "#00b3e5"];
   }
@@ -76,6 +71,8 @@ const HeadSectionMovie = ({
     var genresArr =  movieData.genres.map(x => x.name);
     return genresArr.join(', ');
   };
+
+  if(loading) return false;
 
   return (
     <>
@@ -119,21 +116,6 @@ const HeadSectionMovie = ({
             </Grid>
           </Box>
         </div>
-      </div>
-      <div className={`container-fluid ${classes.videos}`}>
-        <Grid container spacing={4}>
-          <Grid item xs={12}>
-            <PlayVideos id={movieData.id}/>
-          </Grid>
-        </Grid>
-      </div>
-      <Box mt={5}></Box>
-      <div className={`container-fluid ${classes.similar}`}>
-        <Grid container spacing={4}>
-          <Grid item xs={12}>
-            <SimilarMovies id={ movieData.id }/>
-          </Grid>
-        </Grid>
       </div>
     </>
   );

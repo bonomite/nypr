@@ -37,7 +37,7 @@ const SimilarMovies = ({
         direction="row"
         justifyContent="center"
         alignItems="flex-start"
-        className={ 'container-fluid' }
+        /* className={ 'container-fluid' } */
         spacing={3}
       >
         {

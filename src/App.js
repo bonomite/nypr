@@ -11,6 +11,8 @@ import {
 import HomeComponent from './components/home/Home';
 import MovieComponent from './components/movie/Movie';
 
+import ScrollToTop from './helpers/ScrollToTop';
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -20,7 +22,7 @@ function App() {
         <CssBaseline />
         <GlobalStyles />
         <QueryClientProvider client={queryClient}>
-
+          <ScrollToTop />
           <Switch>
             <Route path="/movie">
               <MovieComponent />
