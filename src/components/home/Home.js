@@ -4,7 +4,7 @@ import TheHeader from '../shared/TheHeader';
 import initLocalStorage from '../shared/initLocalStorage';
 import PaginatedList from '../shared/PaginatedList';
 import {useQuery} from 'react-query';
-import {ReactQueryDevtools} from 'react-query/devtools';
+/* import {ReactQueryDevtools} from 'react-query/devtools'; */
 import {
   Grid,
   Typography,
@@ -73,7 +73,7 @@ const Home = ({
               />
         }
       </Grid>
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools /> */}
     </>
   );
 };
