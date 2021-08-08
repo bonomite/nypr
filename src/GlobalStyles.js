@@ -20,6 +20,19 @@ const styles = theme => ({
       }
     },
 
+    '.favorite':{
+      zIndex: 1,
+      opacity: 0.6,
+      color: theme.palette.common.white,
+      cursor: 'pointer',
+      WebkitFilter: 'drop-shadow( 2px 2px 2px rgba(0, 0, 0, 0.4))',
+      filter: 'drop-shadow( 2px 2px 2px rgba(0, 0, 0, 0.4))',
+      transition: 'all 0.25s',
+      '&:hover':{
+        opacity:'1 !important',
+      },
+    },
+
     '.head-section':{
       marginBottom: 24,
       overflow: 'hidden',

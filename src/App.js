@@ -25,6 +25,10 @@ function App() {
             <Route path="/movie">
               <MovieComponent />
             </Route>
+            <Route path="/empty">
+              <>
+              </>
+            </Route>
             <Route >
               <HomeComponent />
             </Route>

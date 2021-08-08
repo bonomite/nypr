@@ -4,8 +4,10 @@ import {
   Grid,
   withStyles,
   withWidth,
+  CircularProgress ,
 } from '@material-ui/core';
 import SVG from 'react-inlinesvg';
+import {useHistory} from 'react-router-dom';
 
 const styles = theme => ({
   wrapper: {
@@ -16,6 +18,13 @@ const TheHeader = ({
   classes,
 
 }) => {
+
+  const history = useHistory();
+
+  const handleClick = (e) => {
+    history.push(`/`);
+  };
+
   return (
     <>
       <div className={ `the-header ${ classes.wrapper }` }>
@@ -26,13 +35,16 @@ const TheHeader = ({
             justifyContent="flex-start"
             alignItems="center"
           >
+
             <SVG
               description="The TMDB logo"
-              loader={ <span>Loading...</span> }
+              loader={ <CircularProgress /> }
               src="logo.svg"
               title="TMDB"
               width={ 150 }
               height={ 50 }
+              onClick={ handleClick }
+              style={{cursor: 'pointer'}}
             />
 
           </Grid>

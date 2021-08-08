@@ -1,39 +1,46 @@
-import React, {useState/* , useEffect */} from 'react';
-import PropTypes from 'prop-types';
-import HeadSection from '../shared/HeadSection';
+import React, {useEffect} from 'react';
+import HeadSectionMovie from '../shared/HeadSectionMovie';
 import {useQuery} from 'react-query';
 import TheHeader from '../shared/TheHeader';
 import {ReactQueryDevtools} from 'react-query/devtools';
 import {
   Grid,
+  LinearProgress
 } from '@material-ui/core';
-import SVG from 'react-inlinesvg';
+import initLocalStorage from '../shared/initLocalStorage';
+import {getMovie} from '../../helpers/my-api';
 
-//import {getPopularMovies} from '../../helpers/my-api';
+let id = '';
 
+//local storage init for favorite hearts
+const localStorageArr = initLocalStorage();
+
+// eslint-disable-next-line no-empty-pattern
 const Movie = ({
-  selectMovie,
+
 }) => {
 
-  // useEffect(() => {
-  //   selectMovie();
-  // }, [selectMovie]);
-  /* const [ queryPage, setQueryPage ] = useState('1');
+  useEffect(() => {
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    id = url.searchParams.get("id");
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+  }, []);
 
-  const {isLoading, error, data, isFetching} = useQuery( ['popularMovieData', queryPage], () => getPopularMovies(queryPage), {keepPreviousData : true} ); */
+  const {isLoading, error, data} = useQuery( ['popularMovieData', id], () => getMovie(id), {keepPreviousData : true, refetchOnWindowFocus: false} );
 
-  /* if (isLoading) return 'Loading...';
+  if (isLoading) return <LinearProgress style={{width: '100%'}} />;
 
   if (error) return `An error has occurred: ${ error.message }`;
-
-  console.log('data = ',data); */
 
   return (
     <>
       <TheHeader/>
-      <HeadSection
-        title="MOVIE TITLE HERE"
-        /* backdropPath={  } */
+      <HeadSectionMovie
+        movieData={data}
+        localStorageArr={localStorageArr}
       />
 
       <Grid container
@@ -50,10 +57,6 @@ const Movie = ({
       <ReactQueryDevtools />
     </>
   );
-};
-
-Movie.propTypes = {
-  selectMovie: PropTypes.func
 };
 
 export default Movie;

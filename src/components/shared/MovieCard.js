@@ -53,16 +53,6 @@ const styles = theme => ({
       position: 'absolute',
       top: 10,
       right: 10,
-      zIndex: 1,
-      opacity: 0.6,
-      color: theme.palette.common.white,
-      cursor: 'pointer',
-      WebkitFilter: 'drop-shadow( 2px 2px 2px rgba(0, 0, 0, 0.4))',
-      filter: 'drop-shadow( 2px 2px 2px rgba(0, 0, 0, 0.4))',
-      transition: 'all 0.25s',
-      '&:hover':{
-        opacity:'1 !important',
-      },
     }
   },
 });
@@ -77,15 +67,16 @@ const MovieCard = ({
   const card = useRef();
   const history = useHistory();
 
-
   useEffect(() => {
     gsap.from(card.current,{duration:1, scale:0.85, opacity:0, ease: 'back.out'});
   }, []);
 
 
   const handleClick = (e) => {
-    console.log('card clicked');
     history.push(`/movie?id=${data.id}`);
+    if(history.location.pathname === '/movie'){
+      history.go(0);
+    }
   };
 
   const PosterImageSkeleton = () => (
@@ -109,7 +100,7 @@ const MovieCard = ({
           <StarRating score={data.vote_average}></StarRating>
         </Grid>
         <Grid item className="content">
-          <Typography >{data.title}</Typography>
+          <Typography>{data.title}</Typography>
         </Grid>
       </Grid>
     );
