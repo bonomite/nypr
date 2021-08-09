@@ -30,6 +30,8 @@ const SimilarMovies = ({
     setQueryPage(value);
   };
 
+  if(!data) return false;
+
   return (
     <>
       <Typography variant="h5">Similar Movies:</Typography>

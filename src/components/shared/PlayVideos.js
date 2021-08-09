@@ -66,61 +66,57 @@ const PlayVideos = ({
     setOpen(false);
   };
 
+  if(!data) return false;
+
   return (
     <>
       <Typography variant="h5">Videos:</Typography>
       <Box mt={3}></Box>
-      {
-        data &&
-        <>
-          <Grid container spacing={3}>
-            {
-              data.results.map((val,index) => (
+      <Grid container spacing={3}>
+        {
+          data.results.map((val,index) => (
 
-                <Grid
-                  item
-                  key={ val.key }
-                  xs={12} sm={6} md={4}
-                  onClick={ () => handleClickOpen(index) }
-                >
-                  <div className={classes.playerWrapper} >
-                    <ReactPlayer
-                      className='react-player'
-                      width='100%'
-                      height='100%'
-                      light
-                      controls
-                      url={`https://www.youtube.com/watch?v=${val.key}`}
-                    />
-                  </div>
-                </Grid>
-              ))
-            }
-          </Grid>
+            <Grid
+              item
+              key={ val.key }
+              xs={12} sm={6} md={4}
+              onClick={ () => handleClickOpen(index) }
+            >
+              <div className={classes.playerWrapper} >
+                <ReactPlayer
+                  className='react-player'
+                  width='100%'
+                  height='100%'
+                  light
+                  controls
+                  url={`https://www.youtube.com/watch?v=${val.key}`}
+                />
+              </div>
+            </Grid>
+          ))
+        }
+      </Grid>
 
-          <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-            <AppBar className={classes.appBar}>
-              <Toolbar>
-                <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-                  <CloseIcon />
-                </IconButton>
-                <Typography variant="h6" className={classes.title}>
-                  {data.results[selectedVideoIndex].name}
-                </Typography>
+      <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+        <AppBar className={classes.appBar}>
+          <Toolbar>
+            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+              <CloseIcon />
+            </IconButton>
+            <Typography variant="h6" className={classes.title}>
+              {data.results[selectedVideoIndex].name}
+            </Typography>
 
-              </Toolbar>
-            </AppBar>
-            <ReactPlayer
-              className='react-player'
-              width='100%'
-              height='100%'
-              controls
-              url={`https://www.youtube.com/watch?v=${data.results[selectedVideoIndex].key}`}
-            />
-          </Dialog>
-        </>
-      }
-
+          </Toolbar>
+        </AppBar>
+        <ReactPlayer
+          className='react-player'
+          width='100%'
+          height='100%'
+          controls
+          url={`https://www.youtube.com/watch?v=${data.results[selectedVideoIndex].key}`}
+        />
+      </Dialog>
     </>
   );
 };
