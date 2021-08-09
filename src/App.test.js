@@ -11,9 +11,6 @@ describe('timeConvert helper function', () => {
       result
     ).toMatch('2h 13m');
   });
-});
-
-describe('getSearch helper function', () => {
   test('it returns correct format "#m" if duration is less than 60 min', () => {
 
     const durationInMinutes = 59;
@@ -21,5 +18,23 @@ describe('getSearch helper function', () => {
     expect(
       result
     ).toMatch('59m');
+  });
+});
+
+describe('getSearch helper function', () => {
+
+  test('it doesnt return a fetch with the query is empty', () => {
+    const query = '';
+    const result = getSearch(query);
+    expect(
+      result
+    ).toEqual(undefined);
+  });
+
+  test('it returns data when a query is NOT empty', () => {
+    const query = 'doubtfire';
+    getSearch(query).then(data => {
+      expect(data).not.toEqual(undefined);
+    });
   });
 });
