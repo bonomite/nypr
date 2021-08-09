@@ -43,7 +43,7 @@ const styles = theme => ({
     },
     '& .content':{
       transition: 'all 0.25s',
-      color: theme.palette.grey[500],
+      color: theme.palette.grey[800],
       width: '100%',
       '& .MuiTypography-root':{
         textAlign: 'left',
@@ -91,7 +91,7 @@ const MovieCard = ({
 
   const PosterImage = () => {
     const {src} = useImage({
-      srcList: `https://www.themoviedb.org/t/p/w220_and_h330_face${data.poster_path}`,
+      srcList: data.poster_path !== ''  ? `https://www.themoviedb.org/t/p/w220_and_h330_face${data.poster_path}` : process.env.PUBLIC_URL + '/no-poster.jpg',
     });
     return (
       <Grid container>

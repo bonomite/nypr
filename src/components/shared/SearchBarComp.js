@@ -54,6 +54,7 @@ const SearchBarComp = ({
 
   if (error) return `An error has occurred: ${ error.message }`;
 
+
   return (
 
     <Autocomplete
@@ -64,6 +65,7 @@ const SearchBarComp = ({
       renderOption={(option) => {
         const date = option.release_date;
         const year = date ? date.substring(0,4) : '';
+        const poster = option.poster_path !== ''  ? `https://www.themoviedb.org/t/p/w220_and_h330_face${option.poster_path}` : process.env.PUBLIC_URL + '/no-poster.jpg';
         return (
           <React.Fragment>
             <Grid
@@ -75,8 +77,7 @@ const SearchBarComp = ({
               onClick={ () => selectMovie(option.id) }
             >
               <Grid item xs={2}>
-                {/* TODO : provide fallback image if BD does not have an image */}
-                <img alt="search poster" src={`https://www.themoviedb.org/t/p/w220_and_h330_face${option.poster_path}`}/>
+                <img src={poster} alt={`Poster for ${option.title}`} />
               </Grid>
               <Grid item xs={10}>
                 <Typography style={{marginLeft:24}}>{option.title} - {year}</Typography>

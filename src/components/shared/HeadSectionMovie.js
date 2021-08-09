@@ -58,8 +58,8 @@ const HeadSectionMovie = ({
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   matches ? imageWidth='1280' : imageWidth='500';
 
-  const imgPath = `https://image.tmdb.org/t/p/w${imageWidth}${movieData?.backdrop_path}`;
-  const imgPosterPath = `https://image.tmdb.org/t/p/w${imageWidth}${movieData?.poster_path}`;
+  const imgPath = movieData?.backdrop_path !== ''  ? `https://image.tmdb.org/t/p/w${imageWidth}${movieData?.backdrop_path}` : process.env.PUBLIC_URL + '/no-poster.jpg';
+  const imgPosterPath = movieData?.poster_path !== ''  ? `https://image.tmdb.org/t/p/w${imageWidth}${movieData?.poster_path}` : process.env.PUBLIC_URL + '/no-poster.jpg';
 
   // gets 3 colors from the image
   let {data, loading} = usePalette(imgPosterPath, 5, 'hex', {crossOrigin:true, quality:200});
@@ -92,7 +92,7 @@ const HeadSectionMovie = ({
           <Box pt={2} display='flex'>
             <Grid container spacing={4}>
               <Grid item xs={12} sm={4} style={{position:"relative"}} >
-                <img className="poster" src={ imgPosterPath } alt="poster"/>
+                <img className="poster" src={ imgPosterPath } alt={`Poster for ${movieData.title}`} />
                 <FavoriteHeart
                   className="favorite"
                   data={movieData}
