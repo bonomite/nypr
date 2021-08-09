@@ -5,28 +5,19 @@ import {
   withStyles,
   withWidth,
   CircularProgress,
-  TextField,
-  Typography,
+  Hidden,
+  IconButton,
 } from '@material-ui/core';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import SVG from 'react-inlinesvg';
 import {useHistory} from 'react-router-dom';
-import {useQuery} from 'react-query';
+import SearchIcon from '@material-ui/icons/Search';
+import CancelIcon from '@material-ui/icons/Cancel';
 
-import {getSearch} from '../../helpers/my-api';
+import SearchBarComp from '../../components/shared/SearchBarComp';
 
 const styles = theme => ({
-  searchField: {
-    '& .MuiInputBase-root':{
-      background: theme.palette.common.white,
-    },
-  },
-  searchItems:{
-    '& img':{
-      width:70,
-    },
-  }
+
 });
 
 const TheHeader = ({
@@ -40,24 +31,7 @@ const TheHeader = ({
     history.push(`/`);
   };
 
-  const [ searchValue , setSearchValue ] = useState('');
-
-  const {/* isLoading, */ error, data} = useQuery( ['movieData', searchValue], () => getSearch(searchValue), {refetchOnWindowFocus: false} );
-
-  //   if (isLoading) return <LinearProgress style={{width: '100%'}} />;
-  //
-  if (error) return `An error has occurred: ${ error.message }`;
-
-  const onSetSearchValue = (e) => {
-    setSearchValue(e.target.value);
-  };
-
-  const selectMovie = (id) => {
-    history.push(`/movie?id=${id}`);
-    if(history.location.pathname === '/movie'){
-      history.go(0);
-    }
-  };
+  const [ showMobileSearch , setShowMobileSearch ] = useState(false);
 
   return (
     <>
@@ -68,11 +42,12 @@ const TheHeader = ({
             justifyContent="space-between"
             alignItems="center"
           >
-            <Grid item xs={6}>
+            <Grid item xs={4}>
               <SVG
                 description="The TMDB logo"
                 loader={ <CircularProgress /> }
-                src="logo.svg"
+                onError={error => console.log(error.message)}
+                src={process.env.PUBLIC_URL + '/logo.svg'}
                 title="TMDB"
                 width={ 150 }
                 height={ 50 }
@@ -80,56 +55,39 @@ const TheHeader = ({
                 style={{cursor: 'pointer'}}
               />
             </Grid>
-            <Grid item xs={6} sm={4}>
-              <Autocomplete
-                className={classes.searchField}
-                autoHighlight
-                options={(data && data?.results?.length) ? data?.results : []}
-                getOptionLabel={(option) => option.title}
-                renderOption={(option) => {
-                  const date = option.release_date;
-                  const year = date ? date.substring(0,4) : '';
-                  return (
-                    <React.Fragment>
-                      <Grid
-                        className={classes.searchItems}
-                        container
-                        direction="row"
-                        justifyContent="flex-start"
-                        alignItems="center"
-                        onClick={ () => selectMovie(option.id) }
-                      >
-                        <Grid item xs={2}>
-                          <img alt="search poster" src={`https://www.themoviedb.org/t/p/w220_and_h330_face${option.poster_path}`}/>
-                        </Grid>
-                        <Grid item xs={10}>
-                          <Typography style={{marginLeft:24}}>{option.title} - {year}</Typography>
+            <Hidden smUp>
 
-                        </Grid>
-                      </Grid>
-                    </React.Fragment>
-                  );
-                }}
-                renderInput={params => (
-                  <TextField
-                    {...params}
-                    onChange={ onSetSearchValue }
-                    label="Search"
-                    margin="none"
-                    variant="filled"
-                    fullWidth
-                    inputProps={{
-                      ...params.inputProps,
-                      autoComplete: 'new-password',
-                    }}
-                  />
-                )}
-              />
+              <Grid item xs={1}>
+                <IconButton
+                  color="primary"
+                  aria-label="search icon"
+                  onClick={ () => setShowMobileSearch(!showMobileSearch) }
+                >
+                  {
+                    showMobileSearch
+                      ?
+                      <CancelIcon />
+                      :
+                      <SearchIcon />
+                  }
+                </IconButton>
+              </Grid>
+              {
+                showMobileSearch &&
+                  <Grid item xs={12}>
+                    <SearchBarComp/>
+                  </Grid>
+              }
 
-
-            </Grid>
+            </Hidden>
+            <Hidden xsDown>
+              <Grid item xs={12} sm={8} md={4}>
+                <SearchBarComp/>
+              </Grid>
+            </Hidden>
 
           </Grid>
+
         </div>
       </div>
     </>

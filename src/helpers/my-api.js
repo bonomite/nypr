@@ -37,9 +37,11 @@ const getSimilarMovies = (page,id) => {
 };
 
 const getSearch = (query) => {
-  return fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${query}`,
-  ).then(res => res.json());
+  if(query !== ''){
+    return fetch(
+      `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${query}`,
+    ).then(res => res.json());
+  }
 
 };
 

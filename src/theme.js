@@ -3,16 +3,12 @@ import WebFont from 'webfontloader';
 
 WebFont.load({
   google: {
-    families: ['Roboto:400,500,700,800', 'sans-serif'],
-  },
-  custom: {
-    families: ['HelveticaNowText:n3,n4,n5,n6,n7'],
-    urls: ['/fonts/MyFontsWebfontsKit/MyFontsWebfontsKitEdited.css'],
+    families: ['Georama:400,500,700,800', 'sans-serif'],
   },
 });
 
 // font
-const fontFamily = 'HelveticaNowText';
+const fontFamily = 'Georama';
 // colors
 const primary = 'rgb(1,180,228)';
 const primaryLight = 'rgb(30,213,169)';
