@@ -4,7 +4,12 @@ function timeConvert(n) {
   var rhours = Math.floor(hours);
   var minutes = (hours - rhours) * 60;
   var rminutes = Math.round(minutes);
-  return rhours + " h " + rminutes + " m";
+
+  if( n < 60 ){
+    return rminutes + "m";
+  } else {
+    return rhours + "h " + rminutes + "m";
+  }
 }
 
 export default timeConvert;

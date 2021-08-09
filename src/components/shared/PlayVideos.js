@@ -66,7 +66,7 @@ const PlayVideos = ({
     setOpen(false);
   };
 
-  if(!data) return false;
+  if(!data.results.length) return false;
 
   return (
     <>

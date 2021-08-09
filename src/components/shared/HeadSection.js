@@ -47,7 +47,7 @@ const HeadSection = ({
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   matches ? imageWidth='1280' : imageWidth='500';
-  const imgPath = backdropPath !== ''  ? `https://image.tmdb.org/t/p/w${imageWidth}${backdropPath}` : process.env.PUBLIC_URL + '/no-poster.jpg';
+  const imgPath = backdropPath !== null  ? `https://image.tmdb.org/t/p/w${imageWidth}${backdropPath}` : process.env.PUBLIC_URL + '/no-poster.jpg';
   const data = ["#90cea1", "", "#3cbec9", "", "#00b3e5"];
 
   return (

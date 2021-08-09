@@ -65,7 +65,8 @@ const SearchBarComp = ({
       renderOption={(option) => {
         const date = option.release_date;
         const year = date ? date.substring(0,4) : '';
-        const poster = option.poster_path !== ''  ? `https://www.themoviedb.org/t/p/w220_and_h330_face${option.poster_path}` : process.env.PUBLIC_URL + '/no-poster.jpg';
+        console.log('option.poster_path= ', option.poster_path);
+        const poster = option.poster_path !== null  ? `https://www.themoviedb.org/t/p/w220_and_h330_face${option.poster_path}` : process.env.PUBLIC_URL + '/no-poster.jpg';
         return (
           <React.Fragment>
             <Grid

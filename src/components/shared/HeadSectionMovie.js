@@ -58,8 +58,8 @@ const HeadSectionMovie = ({
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   matches ? imageWidth='1280' : imageWidth='500';
 
-  const imgPath = movieData?.backdrop_path !== ''  ? `https://image.tmdb.org/t/p/w${imageWidth}${movieData?.backdrop_path}` : process.env.PUBLIC_URL + '/no-poster.jpg';
-  const imgPosterPath = movieData?.poster_path !== ''  ? `https://image.tmdb.org/t/p/w${imageWidth}${movieData?.poster_path}` : process.env.PUBLIC_URL + '/no-poster.jpg';
+  const imgPath = movieData?.backdrop_path !== null  ? `https://image.tmdb.org/t/p/w${imageWidth}${movieData?.backdrop_path}` : process.env.PUBLIC_URL + '/no-poster.jpg';
+  const imgPosterPath = movieData?.poster_path !== null  ? `https://image.tmdb.org/t/p/w${imageWidth}${movieData?.poster_path}` : process.env.PUBLIC_URL + '/no-poster.jpg';
 
   // gets 3 colors from the image
   let {data, loading} = usePalette(imgPosterPath, 5, 'hex', {crossOrigin:true, quality:200});

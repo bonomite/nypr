@@ -91,7 +91,7 @@ const MovieCard = ({
 
   const PosterImage = () => {
     const {src} = useImage({
-      srcList: data.poster_path !== ''  ? `https://www.themoviedb.org/t/p/w220_and_h330_face${data.poster_path}` : process.env.PUBLIC_URL + '/no-poster.jpg',
+      srcList: data.poster_path !== null  ? `https://www.themoviedb.org/t/p/w220_and_h330_face${data.poster_path}` : process.env.PUBLIC_URL + '/no-poster.jpg',
     });
     return (
       <Grid container>
